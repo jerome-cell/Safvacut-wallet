@@ -6,37 +6,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Safvacut - Advanced Crypto Dashboard</title>
-
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <!-- Favicon -->
   <link rel="shortcut icon"
     href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-ESKwzmjR7tbreApAoFqaXonObbk7qV.png"
     type="image/png">
   <link rel="apple-touch-icon"
     href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-ESKwzmjR7tbreApAoFqaXonObbk7qV.png">
-
   <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -130,7 +122,6 @@
       }
     }
   </script>
-
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -700,47 +691,6 @@
       .crypto-price {
         font-size: 0.875rem !important;
       }
-
-      /* Mobile User ID Display - Prominent positioning */
-      .mobile-user-id {
-        display: block !important;
-        background: rgba(247, 147, 30, 0.15);
-        border: 1px solid rgba(247, 147, 30, 0.4);
-        border-radius: 10px;
-        padding: 12px 16px;
-        margin-top: 12px;
-        font-size: 0.875rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(247, 147, 30, 0.1);
-      }
-
-      .mobile-user-id:hover {
-        background: rgba(247, 147, 30, 0.2);
-        border-color: rgba(247, 147, 30, 0.6);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(247, 147, 30, 0.2);
-      }
-
-      .mobile-user-id .user-id-label {
-        color: #9ca3af;
-        margin-bottom: 4px;
-        font-size: 0.75rem;
-        font-weight: 500;
-      }
-
-      .mobile-user-id .user-id-value {
-        color: #f7931e;
-        font-family: 'Courier New', monospace;
-        font-weight: 700;
-        font-size: 0.9rem;
-        letter-spacing: 0.5px;
-      }
-
-      /* Hide username on mobile, show user ID instead */
-      .mobile-username-hide {
-        display: none !important;
-      }
     }
 
     /* Touch-friendly buttons for mobile */
@@ -975,7 +925,6 @@
 <body class="dark dark-theme">
   <!-- Mobile Menu Overlay -->
   <div id="mobile-overlay" class="mobile-menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"></div>
-
   <!-- Sidebar -->
   <aside id="sidebar"
     class="sidebar fixed top-0 left-0 h-full w-64 glass-effect z-50 lg:translate-x-0 sidebar-collapsed">
@@ -988,7 +937,6 @@
           <span>SAFVACUT</span>
         </a>
       </div>
-
       <!-- Navigation -->
       <nav class="space-y-2">
         <a href="#dashboard" class="nav-item active flex items-center space-x-3 p-3 rounded-lg transition-all"
@@ -1023,7 +971,6 @@
           <span>Settings</span>
         </a>
       </nav>
-
       <!-- User Profile -->
       <div class="absolute bottom-6 left-6 right-6">
         <div class="glass-effect rounded-xl p-4">
@@ -1045,7 +992,6 @@
               <i class="fas fa-sign-out-alt text-red-400 text-sm"></i>
             </button>
           </div>
-
           <!-- User ID Display -->
           <div class="user-id-container mt-3">
             <div class="flex items-center justify-between">
@@ -1064,7 +1010,6 @@
       </div>
     </div>
   </aside>
-
   <!-- Main Content -->
   <main id="main-content" class="main-content lg:ml-64 min-h-screen">
     <!-- Header -->
@@ -1074,17 +1019,10 @@
           <!-- Welcome Message (Clickable on Mobile) -->
           <div class="welcome-header flex-1 lg:flex-none lg:cursor-default cursor-pointer" id="mobile-header-toggle"
             aria-label="Toggle sidebar">
-            <h1 class="text-xl font-semibold mobile-username-hide">Welcome back, <span id="header-user-name"
+            <h1 class="text-xl font-semibold">Welcome back, <span id="header-user-name"
                 class="gradient-text">User</span>!</h1>
             <p class="text-sm text-gray-400 hidden sm:block">Manage your crypto portfolio with confidence</p>
-
-            <!-- Mobile User ID Display - Prominent positioning -->
-            <div class="mobile-user-id hidden sm:hidden" onclick="copyMobileUserId()">
-              <div class="user-id-label">User ID:</div>
-              <div class="user-id-value" id="mobile-user-unique-id">Loading...</div>
-            </div>
           </div>
-
           <!-- Header Actions -->
           <div class="flex items-center space-x-4">
             <!-- Theme Toggle -->
@@ -1093,14 +1031,12 @@
               <i id="theme-icon-dark" class="fas fa-moon w-5 h-5 hidden"></i>
               <i id="theme-icon-light" class="fas fa-sun w-5 h-5"></i>
             </button>
-
             <!-- Notifications -->
             <button class="p-2 rounded-lg hover:bg-orange-500 hover:bg-opacity-20 transition-all relative"
               aria-label="View notifications">
               <i class="fas fa-bell w-5 h-5"></i>
               <div class="notification-dot"></div>
             </button>
-
             <!-- Quick Actions -->
             <div class="hidden sm:flex items-center space-x-2">
               <button onclick="showReceiveModal()"
@@ -1113,7 +1049,6 @@
         </div>
       </div>
     </header>
-
     <!-- Dashboard Content -->
     <div id="dashboard-section" class="section-content p-4 sm:p-6 lg:p-8">
       <!-- Balance Card -->
@@ -1135,7 +1070,6 @@
             </div>
           </div>
         </div>
-
         <!-- Quick Actions -->
         <div class="action-buttons grid grid-cols-2 sm:grid-cols-4 gap-3">
           <button onclick="showSendModal()"
@@ -1160,7 +1094,6 @@
           </button>
         </div>
       </div>
-
       <!-- Portfolio Grid -->
       <div class="portfolio-grid grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <!-- Assets -->
@@ -1173,7 +1106,6 @@
             <!-- Assets will be loaded here -->
           </div>
         </div>
-
         <!-- Recent Transactions -->
         <div class="modern-card p-6" data-aos="fade-left">
           <div class="flex items-center justify-between mb-6">
@@ -1183,6 +1115,22 @@
           <div id="transactions-list" class="space-y-4">
             <!-- Transactions will be loaded here -->
           </div>
+        </div>
+      </div>
+
+      <!-- Mobile User ID Display - NEW LOCATION -->
+      <div class="modern-card p-6 mb-8 sm:hidden" data-aos="fade-up">
+        <div class="flex items-center justify-between">
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold mb-2">Your User ID</h3>
+            <p id="mobile-user-unique-id" class="text-lg font-mono text-orange-500 break-all">Loading...</p>
+            <p class="text-sm text-gray-400 mt-1">Use this ID for support and referrals</p>
+          </div>
+          <button id="copy-mobile-user-id"
+            class="copy-button p-3 rounded-lg hover:bg-orange-500 hover:bg-opacity-20 transition-all ml-4"
+            aria-label="Copy User ID">
+            <i class="fas fa-copy text-orange-500 text-lg"></i>
+          </button>
         </div>
       </div>
 
@@ -1203,16 +1151,13 @@
         </div>
       </div>
     </div>
-
     <!-- Other sections remain the same for now... -->
-
     <!-- Portfolio Section -->
     <div id="portfolio-section" class="section-content hidden p-4 sm:p-6 lg:p-8">
       <div class="mb-8" data-aos="fade-up">
         <h2 class="text-2xl font-bold mb-2">Portfolio Analytics</h2>
         <p class="text-gray-400">Detailed view of your cryptocurrency holdings and performance</p>
       </div>
-
       <!-- Portfolio Stats -->
       <div class="stats-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div class="modern-card p-6 text-center" data-aos="fade-up" data-aos-delay="100">
@@ -1236,7 +1181,6 @@
           <div class="text-sm text-green-500 mt-1">Getting Started</div>
         </div>
       </div>
-
       <!-- Detailed Portfolio -->
       <div class="modern-card p-6" data-aos="fade-up">
         <h3 class="text-xl font-semibold mb-6">Asset Allocation</h3>
@@ -1245,14 +1189,12 @@
         </div>
       </div>
     </div>
-
     <!-- Trading Section -->
     <div id="trading-section" class="section-content hidden p-4 sm:p-6 lg:p-8">
       <div class="mb-8" data-aos="fade-up">
         <h2 class="text-2xl font-bold mb-2">Trading Terminal</h2>
         <p class="text-gray-400">Advanced trading tools and real-time market data</p>
       </div>
-
       <!-- Trading Interface -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Order Book -->
@@ -1268,7 +1210,6 @@
             <div id="order-book-buys"></div>
           </div>
         </div>
-
         <!-- Trading Form -->
         <div class="modern-card p-6" data-aos="fade-up" data-aos-delay="200">
           <h3 class="text-lg font-semibold mb-4">Place Order</h3>
@@ -1297,7 +1238,6 @@
             <button type="submit" class="btn-primary w-full py-3 rounded-lg font-semibold">Place Order</button>
           </form>
         </div>
-
         <!-- Recent Trades -->
         <div class="modern-card p-6" data-aos="fade-up" data-aos-delay="300">
           <h3 class="text-lg font-semibold mb-4">Recent Trades</h3>
@@ -1312,14 +1252,12 @@
         </div>
       </div>
     </div>
-
     <!-- Transactions Section -->
     <div id="transactions-section" class="section-content hidden p-4 sm:p-6 lg:p-8">
       <div class="mb-8" data-aos="fade-up">
         <h2 class="text-2xl font-bold mb-2">Transaction History</h2>
         <p class="text-gray-400">Complete record of all your cryptocurrency transactions</p>
       </div>
-
       <!-- Transaction Filters -->
       <div class="modern-card p-6 mb-6" data-aos="fade-up">
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
@@ -1351,7 +1289,6 @@
           <button id="filter-transactions-btn" class="btn-primary py-3 rounded-lg font-semibold">Filter</button>
         </div>
       </div>
-
       <!-- Transaction List -->
       <div class="modern-card p-6" data-aos="fade-up">
         <div id="transaction-history" class="space-y-4">
@@ -1359,14 +1296,12 @@
         </div>
       </div>
     </div>
-
     <!-- Staking Section -->
     <div id="staking-section" class="section-content hidden p-4 sm:p-6 lg:p-8">
       <div class="mb-8" data-aos="fade-up">
         <h2 class="text-2xl font-bold mb-2">Staking Rewards</h2>
         <p class="text-gray-400">Earn passive income by staking your cryptocurrencies</p>
       </div>
-
       <!-- Staking Overview -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         <div class="modern-card p-6 text-center" data-aos="fade-up" data-aos-delay="100">
@@ -1385,7 +1320,6 @@
           <div class="text-sm text-blue-500 mt-1">Validators</div>
         </div>
       </div>
-
       <!-- Available Staking Options -->
       <div class="modern-card p-6" data-aos="fade-up">
         <h3 class="text-xl font-semibold mb-6">Available Staking Options</h3>
@@ -1394,14 +1328,12 @@
         </div>
       </div>
     </div>
-
     <!-- Settings Section -->
     <div id="settings-section" class="section-content hidden p-4 sm:p-6 lg:p-8">
       <div class="mb-8" data-aos="fade-up">
         <h2 class="text-2xl font-bold mb-2">Account Settings</h2>
         <p class="text-gray-400">Manage your account preferences and security settings</p>
       </div>
-
       <!-- Settings Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Profile Settings -->
@@ -1444,7 +1376,6 @@
             <button type="submit" class="btn-primary px-6 py-3 rounded-lg font-semibold">Update Profile</button>
           </form>
         </div>
-
         <!-- Security Settings -->
         <div class="modern-card p-6" data-aos="fade-left">
           <h3 class="text-lg font-semibold mb-4">Security</h3>
@@ -1483,8 +1414,6 @@
       </div>
     </div>
   </main>
-
-
   <!-- Fixed Bottom Navigation (Mobile) -->
   <nav class="bottom-nav">
     <div class="flex items-center justify-around w-full">
@@ -1510,12 +1439,10 @@
       </button>
     </div>
   </nav>
-
   <!-- Floating Action Button (Mobile) -->
   <button class="fab" onclick="showReceiveModal()" aria-label="Quick Receive">
     <i class="fas fa-qrcode"></i>
   </button>
-
   <!-- ETH Warning Modal -->
   <div id="eth-warning-modal" class="eth-warning-modal" style="display: none;">
     <div class="eth-warning-content">
@@ -1531,7 +1458,6 @@
       </button>
     </div>
   </div>
-
   <!-- Modals -->
   <!-- Send Modal -->
   <div id="send-modal" class="modal">
@@ -1590,7 +1516,6 @@
       </form>
     </div>
   </div>
-
   <!-- Receive Modal with Real QR Codes -->
   <div id="receive-modal" class="modal">
     <div class="modal-content glass-effect">
@@ -1639,7 +1564,6 @@
       </div>
     </div>
   </div>
-
   <!-- Buy Modal -->
   <div id="buy-modal" class="modal">
     <div class="modal-content glass-effect">
@@ -1699,7 +1623,6 @@
       </form>
     </div>
   </div>
-
   <!-- Swap Modal -->
   <div id="swap-modal" class="modal">
     <div class="modal-content glass-effect">
@@ -1795,7 +1718,13 @@
       getDoc,
       updateDoc,
       serverTimestamp,
-      setDoc
+      setDoc,
+      query,
+      collection,
+      where,
+      orderBy,
+      limit,
+      getDocs
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
     import {
       getStorage,
@@ -1959,7 +1888,6 @@
 
         // Update UI with real data
         loadAllContent();
-
       } catch (error) {
         console.error('Error fetching real-time prices:', error);
         // Fallback to mock data if API fails
@@ -1993,7 +1921,6 @@
     function checkEthBalance() {
       const ethBalance = userWalletData.balances['ETH'] || 0;
       const minimumEthRequired = 0.7; // 0.7 ETH minimum requirement
-
       if (ethBalance < minimumEthRequired) {
         showEthWarning();
         return false;
@@ -2012,7 +1939,7 @@
     // Make closeEthWarning globally available
     window.closeEthWarning = closeEthWarning;
 
-    // Generate unique user ID
+    // Generate unique user ID - UPDATED TO INCLUDE NUMBERS
     function generateUniqueId() {
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
       let result = 'USR';
@@ -2071,7 +1998,6 @@
 
       // Save to Firestore
       saveUserWalletData();
-
       return transaction;
     }
 
@@ -2117,7 +2043,7 @@
 
       // Check if wallet has individual page
       if (availableWallets.includes(symbol)) {
-        // Navigate to individual wallet page
+        // Navigate to individual wallet page with Firebase integration
         window.location.href = `individual-wallet.html?symbol=${symbol}`;
       } else {
         // Show coming soon message for wallets without pages
@@ -2183,7 +2109,6 @@
 
             if (userDocSnap.exists()) {
               userProfile = userDocSnap.data();
-
               // Generate unique ID if not exists
               if (!userProfile.uniqueId) {
                 const uniqueId = generateUniqueId();
@@ -2239,7 +2164,7 @@
       document.getElementById('user-avatar').src = userAvatar;
       document.getElementById('user-unique-id').textContent = uniqueId;
 
-      // Mobile User ID Display - Prominent positioning
+      // Mobile User ID Display - NEW LOCATION
       document.getElementById('mobile-user-unique-id').textContent = uniqueId;
 
       const settingsAvatar = document.getElementById('settings-avatar');
@@ -2253,7 +2178,7 @@
       if (settingsEmailInput) settingsEmailInput.value = userData.email || '';
     }
 
-    // Copy mobile user ID function
+    // Copy mobile user ID function - NEW LOCATION
     window.copyMobileUserId = function () {
       const userId = document.getElementById('mobile-user-unique-id').textContent;
       navigator.clipboard.writeText(userId).then(() => {
@@ -2281,7 +2206,6 @@
 
       if (assetsList) {
         assetsList.innerHTML = '';
-
         // Show user's actual assets with balances (only if they have balance > 0)
         const userAssets = cryptoAssets.filter(asset => userWalletData.balances[asset.symbol] > 0);
 
@@ -2303,8 +2227,8 @@
             const changeIcon = asset.change >= 0 ? '↗' : '↘';
 
             assetsList.innerHTML += `
-            <div class="crypto-item flex items-center justify-between p-4 modern-card crypto-card cursor-pointer" 
-                 data-aos="fade-up" data-aos-delay="${index * 100}"
+            <div class="crypto-item flex items-center justify-between p-4 modern-card crypto-card cursor-pointer"
+                  data-aos="fade-up" data-aos-delay="${index * 100}"
                  onclick="openCryptoWallet('${asset.symbol}')">
               <div class="flex items-center space-x-3">
                 <div class="crypto-icon w-10 h-10 rounded-full flex items-center justify-center ${asset.iconClass}">
@@ -2328,7 +2252,6 @@
 
       if (transactionsList) {
         transactionsList.innerHTML = '';
-
         if (userWalletData.transactions.length === 0) {
           transactionsList.innerHTML = `
           <div class="text-center py-8 text-gray-400">
@@ -2371,8 +2294,8 @@
           const changeIcon = asset.change >= 0 ? '↗' : '↘';
 
           marketOverview.innerHTML += `
-          <div class="modern-card p-4 crypto-card cursor-pointer" 
-               data-aos="fade-up" data-aos-delay="${index * 100}"
+          <div class="modern-card p-4 crypto-card cursor-pointer"
+                data-aos="fade-up" data-aos-delay="${index * 100}"
                onclick="openCryptoWallet('${asset.symbol}')">
             <div class="flex items-center space-x-3 mb-3">
               <div class="crypto-icon w-8 h-8 rounded-full flex items-center justify-center ${asset.iconClass}">
@@ -2419,10 +2342,148 @@
       // Trading content implementation...
     }
 
-    // Load transactions content
+    // Load transactions content - FULLY FUNCTIONAL WITH FIREBASE
     function loadTransactionsContent() {
-      // Transactions content implementation...
+      const transactionHistory = document.getElementById('transaction-history');
+      const typeFilter = document.getElementById('transaction-type-filter');
+      const assetFilter = document.getElementById('transaction-asset-filter');
+      const dateFilter = document.getElementById('transaction-date-filter');
+      const filterBtn = document.getElementById('filter-transactions-btn');
+
+      function renderTransactions(transactions = userWalletData.transactions) {
+        if (!transactionHistory) return;
+
+        transactionHistory.innerHTML = '';
+
+        if (transactions.length === 0) {
+          transactionHistory.innerHTML = `
+            <div class="text-center py-12 text-gray-400">
+              <i class="fas fa-history text-5xl mb-4"></i>
+              <h3 class="text-xl font-semibold mb-2">No Transactions Found</h3>
+              <p class="text-gray-500">Your transaction history will appear here once you start trading.</p>
+              <button onclick="showReceiveModal()" class="btn-primary px-6 py-3 rounded-lg mt-4">
+                <i class="fas fa-qrcode mr-2"></i>Get Started
+              </button>
+            </div>
+          `;
+          return;
+        }
+
+        transactions.forEach((tx, index) => {
+          const statusClass = `status-${tx.status}`;
+          const typeIcon = getTransactionIcon(tx.type);
+          const typeColor = getTransactionColor(tx.type);
+          const timeAgo = getTimeAgo(tx.timestamp);
+          const formattedDate = new Date(tx.timestamp).toLocaleDateString();
+          const formattedTime = new Date(tx.timestamp).toLocaleTimeString();
+
+          transactionHistory.innerHTML += `
+            <div class="transaction-item flex items-center justify-between p-4 modern-card hover:bg-orange-500 hover:bg-opacity-5 transition-all cursor-pointer" 
+                 data-aos="fade-up" data-aos-delay="${Math.min(index * 50, 500)}"
+                 onclick="showTransactionDetails('${tx.id}')">
+              <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center ${typeColor}">
+                  ${typeIcon}
+                </div>
+                <div>
+                  <div class="font-semibold capitalize text-lg">${tx.type} ${tx.asset}</div>
+                  <div class="text-sm text-gray-400">${formattedDate} at ${formattedTime}</div>
+                  <div class="text-xs text-gray-500 mt-1">Hash: ${tx.hash}</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-bold text-lg ${tx.type === 'send' ? 'text-red-400' : 'text-green-400'}">
+                  ${tx.type === 'send' ? '-' : '+'}${tx.amount} ${tx.asset}
+                </div>
+                <div class="text-sm text-gray-400">$${tx.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                <div class="text-sm ${statusClass} px-3 py-1 rounded-full mt-1 inline-block">${tx.status}</div>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      function filterTransactions() {
+        const typeValue = typeFilter.value;
+        const assetValue = assetFilter.value;
+        const dateValue = dateFilter.value;
+
+        let filteredTransactions = [...userWalletData.transactions];
+
+        // Filter by type
+        if (typeValue !== 'All Types') {
+          filteredTransactions = filteredTransactions.filter(tx => tx.type === typeValue);
+        }
+
+        // Filter by asset
+        if (assetValue !== 'All Assets') {
+          filteredTransactions = filteredTransactions.filter(tx => tx.asset === assetValue);
+        }
+
+        // Filter by date
+        if (dateValue) {
+          const filterDate = new Date(dateValue);
+          filteredTransactions = filteredTransactions.filter(tx => {
+            const txDate = new Date(tx.timestamp);
+            return txDate.toDateString() === filterDate.toDateString();
+          });
+        }
+
+        renderTransactions(filteredTransactions);
+      }
+
+      // Set up filter event listeners
+      if (filterBtn) {
+        filterBtn.addEventListener('click', filterTransactions);
+      }
+
+      // Initial render
+      renderTransactions();
     }
+
+    // Show transaction details modal
+    window.showTransactionDetails = function (transactionId) {
+      const transaction = userWalletData.transactions.find(tx => tx.id === transactionId);
+      if (!transaction) return;
+
+      const statusColor = transaction.status === 'completed' ? 'text-green-500' :
+        transaction.status === 'pending' ? 'text-yellow-500' : 'text-red-500';
+
+      Swal.fire({
+        title: `${transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)} Transaction`,
+        html: `
+          <div class="text-left space-y-3">
+            <div class="flex justify-between">
+              <span class="text-gray-400">Asset:</span>
+              <span class="font-semibold">${transaction.asset}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Amount:</span>
+              <span class="font-semibold">${transaction.amount} ${transaction.asset}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Value:</span>
+              <span class="font-semibold">$${transaction.value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Status:</span>
+              <span class="font-semibold ${statusColor}">${transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Date:</span>
+              <span class="font-semibold">${new Date(transaction.timestamp).toLocaleString()}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Hash:</span>
+              <span class="font-mono text-sm">${transaction.hash}</span>
+            </div>
+          </div>
+        `,
+        confirmButtonColor: '#f7931a',
+        background: 'rgba(15, 15, 35, 0.9)',
+        color: '#ffffff'
+      });
+    };
 
     // Load staking content
     function loadStakingContent() {
@@ -2590,7 +2651,6 @@
 
           // Close modal
           document.getElementById('send-modal').classList.remove('active');
-
           showToast('Transaction sent successfully!', 'success');
         }
       } catch (error) {
@@ -2677,7 +2737,6 @@
 
           // Close modal
           document.getElementById('swap-modal').classList.remove('active');
-
           showToast('Swap completed successfully!', 'success');
         }
       } catch (error) {
@@ -2744,7 +2803,6 @@
     function swapAssetDirection() {
       const fromAsset = document.getElementById('swap-from-asset');
       const toAsset = document.getElementById('swap-to-asset');
-
       const tempValue = fromAsset.value;
       fromAsset.value = toAsset.value;
       toAsset.value = tempValue;
@@ -2752,7 +2810,6 @@
       // Clear amounts
       document.getElementById('swap-from-amount').value = '';
       document.getElementById('swap-to-amount').value = '';
-
       updateSwapCalculations();
     }
 
@@ -2844,12 +2901,10 @@
       copyAddressBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(receiveAddress.textContent).then(() => {
           showToast('Address copied to clipboard!', 'success');
-
           // Visual feedback
           const originalText = copyAddressBtn.innerHTML;
           copyAddressBtn.innerHTML = '<i class="fas fa-check w-5 h-5 mr-2"></i>Copied!';
           copyAddressBtn.classList.add('bg-green-500');
-
           setTimeout(() => {
             copyAddressBtn.innerHTML = originalText;
             copyAddressBtn.classList.remove('bg-green-500');
@@ -3015,7 +3070,6 @@
 
         Swal.close();
         showToast('Profile image updated successfully!', 'success');
-
       } catch (error) {
         console.error('Error uploading image:', error);
         Swal.close();
@@ -3040,12 +3094,10 @@
         const userId = document.getElementById('user-unique-id').textContent;
         navigator.clipboard.writeText(userId).then(() => {
           showToast('User ID copied to clipboard!', 'success');
-
           // Visual feedback
           const copyBtn = document.getElementById('copy-user-id');
           const originalIcon = copyBtn.innerHTML;
           copyBtn.innerHTML = '<i class="fas fa-check text-green-500 text-sm"></i>';
-
           setTimeout(() => {
             copyBtn.innerHTML = originalIcon;
           }, 2000);
@@ -3054,17 +3106,34 @@
         });
       });
 
+      // Mobile User ID copy functionality - NEW
+      const copyMobileBtn = document.getElementById('copy-mobile-user-id');
+      if (copyMobileBtn) {
+        copyMobileBtn.addEventListener('click', () => {
+          const userId = document.getElementById('mobile-user-unique-id').textContent;
+          navigator.clipboard.writeText(userId).then(() => {
+            showToast('User ID copied to clipboard!', 'success');
+            // Visual feedback
+            const originalIcon = copyMobileBtn.innerHTML;
+            copyMobileBtn.innerHTML = '<i class="fas fa-check text-green-500 text-lg"></i>';
+            setTimeout(() => {
+              copyMobileBtn.innerHTML = originalIcon;
+            }, 2000);
+          }).catch(() => {
+            showToast('Failed to copy User ID', 'error');
+          });
+        });
+      }
+
       const copySettingsBtn = document.getElementById('copy-settings-user-id');
       if (copySettingsBtn) {
         copySettingsBtn.addEventListener('click', () => {
           const userId = document.getElementById('settings-user-id').textContent;
           navigator.clipboard.writeText(userId).then(() => {
             showToast('User ID copied to clipboard!', 'success');
-
             // Visual feedback
             const originalIcon = copySettingsBtn.innerHTML;
             copySettingsBtn.innerHTML = '<i class="fas fa-check text-green-500"></i>';
-
             setTimeout(() => {
               copySettingsBtn.innerHTML = originalIcon;
             }, 2000);
@@ -3078,7 +3147,6 @@
     // Utility functions
     function showModal(modalId) {
       document.getElementById(modalId).classList.add('active');
-
       // Update modal data when opened
       if (modalId === 'send-modal') {
         updateSendAssetInfo();
