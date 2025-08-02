@@ -5,64 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Safvacut - Individual Crypto Wallet</title>
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Firebase SDK -->
-    <script type="module">
-        // Firebase Config
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import {
-            getAuth,
-            onAuthStateChanged
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import {
-            getFirestore,
-            doc,
-            getDoc,
-            updateDoc,
-            serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyD6enbTO-nNYVyrNLRP-Av6ghguL3--Nvw",
-            authDomain: "safvacut-web-wallet.firebaseapp.com",
-            projectId: "safvacut-web-wallet",
-            storageBucket: "safvacut-web-wallet.appspot.com",
-            messagingSenderId: "976916444641",
-            appId: "1:976916444641:web:4c6a6ad09c43a7ccda0ea0",
-            measurementId: "G-0QCL2TQCB6"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        let currentUser = null;
-        let userWalletData = {
-            balances: {},
-            transactions: [],
-            totalValue: 0
-        };
-    </script>
-
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -271,6 +227,7 @@
         }
     </style>
 </head>
+
 <!-- Start of LiveChat (www.livechat.com) code -->
 <script>
     window.__lc = window.__lc || {};
@@ -292,7 +249,6 @@
                 <i class="fas fa-arrow-left"></i>
                 <span>Back to Dashboard</span>
             </button>
-
             <div class="flex items-center space-x-4">
                 <button class="p-2 rounded-lg glass-effect hover:bg-orange-500 hover:bg-opacity-20 transition-all">
                     <i class="fas fa-bell"></i>
@@ -315,7 +271,6 @@
                         <p id="wallet-network" class="text-gray-400">Bitcoin Network</p>
                     </div>
                 </div>
-
                 <div class="text-right">
                     <div id="wallet-price" class="text-xl font-semibold">$45,234.67</div>
                     <div id="wallet-change" class="text-sm price-up">↗ +2.34%</div>
@@ -362,13 +317,11 @@
                 <div class="text-sm text-gray-400">24h Volume</div>
                 <div class="text-sm text-green-500 mt-1">+15.67%</div>
             </div>
-
             <div class="glass-effect rounded-2xl p-6 text-center">
                 <div class="text-2xl font-bold balance-display mb-2" id="market-cap">$45,890.12</div>
                 <div class="text-sm text-gray-400">Market Cap</div>
                 <div class="text-sm text-blue-500 mt-1">Rank #1</div>
             </div>
-
             <div class="glass-effect rounded-2xl p-6 text-center">
                 <div class="text-2xl font-bold balance-display mb-2" id="max-supply">21M</div>
                 <div class="text-sm text-gray-400">Max Supply</div>
@@ -393,7 +346,6 @@
                         </button>
                     </div>
                 </div>
-
                 <!-- Real QR Code -->
                 <div class="text-center mt-4">
                     <div class="inline-block bg-white p-4 rounded-lg">
@@ -410,7 +362,6 @@
                     <h3 class="text-xl font-semibold">Recent Transactions</h3>
                     <button class="text-orange-500 hover:text-orange-400 text-sm font-medium">View All</button>
                 </div>
-
                 <div id="transactions-list" class="space-y-3 max-h-80 overflow-y-auto">
                     <!-- Transactions will be loaded here -->
                 </div>
@@ -434,7 +385,46 @@
         </div>
     </div>
 
-    <script>
+    <script type="module">
+        // Firebase Config
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import {
+            getAuth,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            collection,
+            query,
+            where,
+            orderBy,
+            limit,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD6enbTO-nNYVyrNLRP-Av6ghguL3--Nvw",
+            authDomain: "safvacut-web-wallet.firebaseapp.com",
+            projectId: "safvacut-web-wallet",
+            storageBucket: "safvacut-web-wallet.appspot.com",
+            messagingSenderId: "976916444641",
+            appId: "1:976916444641:web:4c6a6ad09c43a7ccda0ea0",
+            measurementId: "G-0QCL2TQCB6"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+        let userWalletData = {
+            balances: {},
+            transactions: [],
+            totalValue: 0
+        };
+
         // Real wallet addresses with QR codes
         const walletAddresses = {
             BTC: {
@@ -602,7 +592,6 @@
 
                 // Update UI with real data
                 updateWalletUI();
-
             } catch (error) {
                 console.error('Error fetching real-time prices:', error);
                 // Fallback to mock data if API fails
@@ -644,12 +633,73 @@
             };
         }
 
-        // No demo transactions - production ready
-        const mockTransactions = [];
+        // Load user wallet data from Firebase - ENHANCED
+        async function loadUserWalletData() {
+            if (!currentUser) return;
+
+            try {
+                const userDocRef = doc(db, "users", currentUser.uid);
+                const userDocSnap = await getDoc(userDocRef);
+
+                if (userDocSnap.exists() && userDocSnap.data().walletData) {
+                    userWalletData = userDocSnap.data().walletData;
+                } else {
+                    // Initialize empty wallet data
+                    userWalletData = {
+                        balances: {},
+                        transactions: [],
+                        totalValue: 0
+                    };
+                }
+
+                // Load transactions from separate collection
+                await loadTransactionsFromFirestore();
+            } catch (error) {
+                console.error('Error loading wallet data:', error);
+                userWalletData = {
+                    balances: {},
+                    transactions: [],
+                    totalValue: 0
+                };
+            }
+        }
+
+        // Load transactions from Firestore - ENHANCED
+        async function loadTransactionsFromFirestore() {
+            if (!currentUser) return;
+
+            try {
+                const transactionsRef = collection(db, "transactions");
+                const q = query(
+                    transactionsRef,
+                    where("userId", "==", currentUser.uid),
+                    orderBy("timestamp", "desc"),
+                    limit(50)
+                );
+
+                const querySnapshot = await getDocs(q);
+                const transactions = [];
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    // Convert Firestore timestamp to Date
+                    if (data.timestamp && data.timestamp.toDate) {
+                        data.timestamp = data.timestamp.toDate();
+                    }
+                    transactions.push(data);
+                });
+
+                userWalletData.transactions = transactions;
+                return transactions;
+            } catch (error) {
+                console.error('Error loading transactions:', error);
+                return [];
+            }
+        }
 
         // Critical ETH Balance Check Function
         function checkEthBalance() {
-            const ethBalance = cryptoData.ETH ? cryptoData.ETH.balance : 0;
+            const ethBalance = userWalletData.balances['ETH'] || 0;
             const minimumEthRequired = 0.7; // 0.7 ETH minimum requirement
 
             if (ethBalance < minimumEthRequired) {
@@ -670,23 +720,37 @@
         // Make closeEthWarning globally available
         window.closeEthWarning = closeEthWarning;
 
-        // Initialize wallet
+        // Initialize wallet - ENHANCED WITH FIREBASE INTEGRATION
         function initializeWallet() {
             const urlParams = new URLSearchParams(window.location.search);
             const symbol = urlParams.get('symbol') || 'BTC';
+            const uid = urlParams.get('uid');
 
-            // Fetch real-time data first
-            fetchRealTimePrices().then(() => {
-                const crypto = cryptoData[symbol];
+            // Check authentication
+            onAuthStateChanged(auth, async (user) => {
+                if (user && (uid === user.uid || !uid)) {
+                    currentUser = user;
+                    await loadUserWalletData();
 
-                if (!crypto) {
-                    window.location.href = 'dashboard.html';
-                    return;
+                    // Fetch real-time data first
+                    await fetchRealTimePrices();
+
+                    const crypto = cryptoData[symbol];
+                    if (!crypto) {
+                        window.location.href = 'dashboard.html';
+                        return;
+                    }
+
+                    // Update crypto balance from user data
+                    crypto.balance = userWalletData.balances[symbol] || 0;
+
+                    updateWalletDisplay(crypto);
+                    loadTransactions(symbol);
+                    initializeChart(crypto);
+                } else {
+                    // Redirect to login if not authenticated
+                    window.location.href = 'login.html';
                 }
-
-                updateWalletDisplay(crypto);
-                loadTransactions();
-                initializeChart(crypto);
             });
 
             // Update prices every 30 seconds
@@ -724,172 +788,166 @@
             const urlParams = new URLSearchParams(window.location.search);
             const symbol = urlParams.get('symbol') || 'BTC';
             const crypto = cryptoData[symbol];
-
-            if (crypto) {
+            if (crypto && currentUser) {
+                // Update balance from user data
+                crypto.balance = userWalletData.balances[symbol] || 0;
                 updateWalletDisplay(crypto);
             }
         }
 
-        function loadTransactions() {
+        // Load transactions for specific asset - ENHANCED
+        function loadTransactions(symbol) {
             const container = document.getElementById('transactions-list');
             container.innerHTML = '';
 
-            if (mockTransactions.length === 0) {
+            // Filter transactions for this specific asset
+            const assetTransactions = userWalletData.transactions.filter(tx => tx.asset === symbol);
+
+            if (assetTransactions.length === 0) {
                 container.innerHTML = `
                     <div class="text-center py-8 text-gray-400">
                         <i class="fas fa-history text-3xl mb-3"></i>
-                        <p>No transactions yet</p>
-                        <p class="text-sm mt-2">Your transaction history will appear here</p>
+                        <p>No ${symbol} transactions yet</p>
+                        <p class="text-sm mt-2">Your ${symbol} transaction history will appear here</p>
                     </div>
                 `;
                 return;
             }
 
-            mockTransactions.forEach(tx => {
+            assetTransactions.slice(0, 10).forEach(tx => {
                 const statusClass = `status-${tx.status}`;
                 const typeIcon = tx.type === 'send' ? 'fa-paper-plane' : tx.type === 'receive' ? 'fa-arrow-down' : 'fa-credit-card';
                 const typeColor = tx.type === 'send' ? 'bg-red-500 bg-opacity-20' : tx.type === 'receive' ? 'bg-green-500 bg-opacity-20' : 'bg-blue-500 bg-opacity-20';
+                const timeAgo = getTimeAgo(tx.timestamp);
 
                 container.innerHTML += `
-                    <div class="flex items-center justify-between p-3 glass-effect rounded-lg">
+                    <div class="flex items-center justify-between p-3 glass-effect rounded-lg hover:bg-orange-500 hover:bg-opacity-10 transition-all">
                         <div class="flex items-center space-x-3">
                             <div class="w-8 h-8 rounded-full flex items-center justify-center ${typeColor}">
-                                <i class="fas ${typeIcon} text-white text-sm"></i>
+                                <i class="fas ${typeIcon} text-white text-xs"></i>
                             </div>
                             <div>
                                 <div class="font-medium capitalize text-sm">${tx.type}</div>
-                                <div class="text-xs text-gray-400">${tx.time}</div>
+                                <div class="text-xs text-gray-400">${timeAgo}</div>
                             </div>
                         </div>
                         <div class="text-right">
-                            <div class="font-medium text-sm">${tx.type === 'send' ? '-' : '+'}${tx.amount} BTC</div>
-                            <div class="text-xs text-gray-400">$${tx.value.toLocaleString()}</div>
+                            <div class="font-medium text-sm ${tx.type === 'send' ? 'text-red-400' : 'text-green-400'}">
+                                ${tx.type === 'send' ? '-' : '+'}${tx.amount} ${tx.asset}
+                            </div>
+                            <div class="text-xs ${statusClass} px-2 py-1 rounded-full">${tx.status}</div>
                         </div>
                     </div>
                 `;
             });
         }
 
+        // Get time ago string
+        function getTimeAgo(timestamp) {
+            const now = new Date();
+            const time = new Date(timestamp);
+            const diffInSeconds = Math.floor((now - time) / 1000);
+
+            if (diffInSeconds < 60) return 'Just now';
+            if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`;
+            if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`;
+            return `${Math.floor(diffInSeconds / 86400)}d ago`;
+        }
+
+        // Initialize chart
         function initializeChart(crypto) {
             const ctx = document.getElementById('price-chart');
-
-            // Generate realistic price data based on current price
-            const basePrice = crypto.price;
-            const priceData = [];
-            for (let i = 0; i < 24; i++) {
-                const variation = (Math.random() - 0.5) * 0.05; // ±2.5% variation
-                priceData.push(basePrice * (1 + variation));
-            }
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
-                    datasets: [{
-                        label: 'Price',
-                        data: priceData,
-                        borderColor: '#f7931e',
-                        backgroundColor: 'rgba(247, 147, 30, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        x: { display: false },
-                        y: { display: false }
-                    }
+            if (ctx) {
+                // Generate mock price data based on current price
+                const basePrice = crypto.price;
+                const priceData = [];
+                for (let i = 0; i < 24; i++) {
+                    const variation = (Math.random() - 0.5) * 0.1; // ±5% variation
+                    priceData.push(basePrice * (1 + variation));
                 }
-            });
-        }
 
-        function showSendModal() {
-            // Critical ETH Balance Check
-            if (!checkEthBalance()) {
-                return; // Stop if ETH balance is insufficient
-            }
-
-            // If ETH balance is sufficient, proceed with send
-            Swal.fire({
-                title: 'Send Cryptocurrency',
-                text: 'Send functionality would be implemented here.',
-                icon: 'info',
-                confirmButtonColor: '#f7931a',
-                background: 'rgba(15, 15, 35, 0.9)',
-                color: '#ffffff'
-            });
-        }
-
-        function showReceiveModal() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const symbol = urlParams.get('symbol') || 'BTC';
-            const crypto = cryptoData[symbol];
-
-            if (crypto) {
-                Swal.fire({
-                    title: `Receive ${crypto.name}`,
-                    html: `
-                        <div class="text-center">
-                            <img src="${crypto.qrImage}" alt="${crypto.symbol} QR Code" class="w-48 h-48 mx-auto mb-4 bg-white p-4 rounded-lg">
-                            <div class="bg-gray-800 p-4 rounded-lg font-mono text-sm break-all">
-                                ${crypto.address}
-                            </div>
-                            <p class="text-xs text-gray-400 mt-2">
-                                Only send ${crypto.name} to this address
-                            </p>
-                        </div>
-                    `,
-                    showCancelButton: true,
-                    confirmButtonText: 'Copy Address',
-                    cancelButtonText: 'Close',
-                    confirmButtonColor: '#f7931a',
-                    background: 'rgba(15, 15, 35, 0.9)',
-                    color: '#ffffff'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        copyAddress();
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+                        datasets: [{
+                            label: `${crypto.symbol} Price`,
+                            data: priceData,
+                            borderColor: '#f7931e',
+                            backgroundColor: 'rgba(247, 147, 30, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            pointHoverRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                display: false
+                            }
+                        },
+                        interaction: {
+                            intersect: false,
+                            mode: 'index'
+                        }
                     }
                 });
             }
         }
 
-        function showSwapModal() {
-            Swal.fire({
-                title: 'Swap Cryptocurrency',
-                text: 'Swap functionality would be implemented here.',
-                icon: 'info',
-                confirmButtonColor: '#f7931a',
-                background: 'rgba(15, 15, 35, 0.9)',
-                color: '#ffffff'
-            });
-        }
+        // Global functions
+        window.goBack = function () {
+            window.location.href = 'dashboard.html';
+        };
 
-        function copyAddress() {
+        window.copyAddress = function () {
             const address = document.getElementById('wallet-address').textContent;
             navigator.clipboard.writeText(address).then(() => {
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    icon: 'success',
-                    title: 'Address copied to clipboard!',
-                    background: 'rgba(15, 15, 35, 0.9)',
-                    color: '#ffffff'
-                });
+                // Show success message
+                const button = event.target.closest('button');
+                const originalIcon = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check text-green-500"></i>';
+                setTimeout(() => {
+                    button.innerHTML = originalIcon;
+                }, 2000);
             });
-        }
+        };
 
-        function goBack() {
-            window.location.href = 'dashboard.html';
-        }
+        window.showSendModal = function () {
+            // Check ETH balance before allowing send
+            if (!checkEthBalance()) {
+                return;
+            }
+            // Show send modal implementation
+            alert('Send modal would open here');
+        };
 
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', initializeWallet);
+        window.showReceiveModal = function () {
+            // Show receive modal implementation
+            alert('Receive modal would open here');
+        };
+
+        window.showSwapModal = function () {
+            // Show swap modal implementation
+            alert('Swap modal would open here');
+        };
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeWallet();
+        });
     </script>
 </body>
 
