@@ -1986,19 +1986,17 @@
         value: value,
         status: status,
         timestamp: new Date(),
-        hash: '0x' + Math.random().toString(16).substr(2, 8) + '...'
+        hash: '0x' + Math.random().toString(16).substr(2, 8) + '...',
+        recipientAddress: null // Add this field for send transactions
       };
-
       userWalletData.transactions.unshift(transaction);
-
       // Keep only last 100 transactions
       if (userWalletData.transactions.length > 100) {
         userWalletData.transactions = userWalletData.transactions.slice(0, 100);
       }
-
       // Save to Firestore
       saveUserWalletData();
-      return transaction;
+      return transaction; // Make sure to return the transaction
     }
 
     // Save user wallet data to Firestore
@@ -2634,24 +2632,22 @@
         });
 
         if (result.isConfirmed) {
-          // Update balance
-          userWalletData.balances[asset] -= amount;
-
-          // Deduct ETH for network fees (without showing the amount)
-          if (userWalletData.balances['ETH'] >= 0.001) {
-            userWalletData.balances['ETH'] -= 0.001; // Deduct network fee from ETH
-          }
-
-          // Add transaction
+          // DON'T deduct balance immediately - keep it pending
+          // Add transaction as PENDING with recipient address
           const assetPrice = cryptoAssets.find(a => a.symbol === asset)?.price || 0;
-          addTransaction('send', asset, amount, amount * assetPrice);
+          const pendingTransaction = addTransaction('send', asset, amount, amount * assetPrice, 'pending');
+
+          // Add recipient address to transaction
+          if (pendingTransaction && userWalletData.transactions.length > 0) {
+            userWalletData.transactions[0].recipientAddress = address;
+            saveUserWalletData(); // Save the updated transaction
+          }
 
           // Update UI
           loadAllContent();
-
           // Close modal
           document.getElementById('send-modal').classList.remove('active');
-          showToast('Transaction sent successfully!', 'success');
+          showToast('Transaction submitted for processing! Please wait for admin approval.', 'info');
         }
       } catch (error) {
         console.error('Send transaction error:', error);
